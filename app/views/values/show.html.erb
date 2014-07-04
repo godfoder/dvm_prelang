@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Exact value:</strong>
+  <%= @value.exact_value %>
+</p>
+
+<p>
+  <strong>Standard value:</strong>
+  <%= @value.standard_value %>
+</p>
+
+<p>
+  <strong>Accepted:</strong>
+  <%= @value.accepted %>
+</p>
+
+<p>
+  <strong>Field:</strong>
+  <%= @value.field %>
+</p>
+
+<%= link_to 'Edit', edit_value_path(@value) %> |
+<%= link_to 'Back', values_path %>
