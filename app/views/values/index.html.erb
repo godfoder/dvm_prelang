@@ -1,31 +1,40 @@
-<h1>Listing values</h1>
-
-<table>
+<%- model_class = Value -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Value %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Exact value</th>
-      <th>Standard value</th>
-      <th>Accepted</th>
-      <th>Field</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:exact_value) %></th>
+      <th><%= model_class.human_attribute_name(:standard_value) %></th>
+      <th><%= model_class.human_attribute_name(:accepted) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @values.each do |value| %>
       <tr>
+        <td><%= value.id %></td>
         <td><%= value.exact_value %></td>
         <td><%= value.standard_value %></td>
         <td><%= value.accepted %></td>
-        <td><%= value.field %></td>
-        <td><%= link_to 'Show', value %></td>
-        <td><%= link_to 'Edit', edit_value_path(value) %></td>
-        <td><%= link_to 'Destroy', value, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l value.created_at, format: :long %></td>
+        <td>
+          <%= link_to value_path(value), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to value_path(value), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Value', new_value_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_value_path,
+            :class => 'btn btn-primary' %>

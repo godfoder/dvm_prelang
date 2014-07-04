@@ -1,24 +1,28 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Value -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Value %></h1>
+</div>
 
-<p>
-  <strong>Exact value:</strong>
-  <%= @value.exact_value %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:exact_value) %></dt>
+      <dd><pre class="prettyprint"><%= @value.exact_value %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:standard_value) %></dt>
+      <dd><pre class="prettyprint"><%= @value.standard_value %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:accepted) %></dt>
+      <dd><pre class="prettyprint"><%= @value.accepted %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Standard value:</strong>
-  <%= @value.standard_value %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              values_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_value_path(@value), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              value_path(@value),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>Accepted:</strong>
-  <%= @value.accepted %>
-</p>
-
-<p>
-  <strong>Field:</strong>
-  <%= @value.field %>
-</p>
-
-<%= link_to 'Edit', edit_value_path(@value) %> |
-<%= link_to 'Back', values_path %>

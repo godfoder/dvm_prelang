@@ -1,14 +1,28 @@
-<%= simple_form_for(@value) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :exact_value %>
-    <%= f.input :standard_value %>
-    <%= f.input :accepted %>
-    <%= f.association :field %>
+<%= form_for @value, :html => { :class => 'form-horizontal form-model' } do |f| %>
+  <div class="form-group">
+    <%= f.label :exact_value, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :exact_value, :class => 'text-field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :standard_value, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :standard_value, :class => 'text-field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :accepted, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.check_box :accepted, :class => 'text-field form-control' %>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  values_path, :class => 'btn btn-default' %>
+    </div>
   </div>
 <% end %>
