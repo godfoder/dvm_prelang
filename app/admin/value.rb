@@ -1,4 +1,5 @@
 ActiveAdmin.register Value do
+  permit_params :exact_value, :standard_value, :accepted
 
   
   # See permitted parameters documentation:
