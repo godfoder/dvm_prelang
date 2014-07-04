@@ -1,4 +1,5 @@
 ActiveAdmin.register Field do
+  permit_params :field_name
 
   
   # See permitted parameters documentation:
